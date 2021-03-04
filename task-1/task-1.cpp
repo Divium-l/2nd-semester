@@ -10,6 +10,7 @@ int main()
     a = pow(x, y / x) - pow(y / x, 1.0 / 3.0);
     b = (y - x) + ((y - z) / (y - x)) / (3 + pow(z, 2) / (5));
 
+    cout << "x = " << x << "; y = " << y << "; z = " << z << ";\n";
     cout << "a = " << a << "\nb = " << b << endl;
 
     return 0;
