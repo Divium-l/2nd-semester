@@ -1,11 +1,11 @@
 #include <iostream>
-#define print(message) cout << message << endl;
 
 using namespace std;
 
 int main()
 {
-    print("hi");
     
+    cout << "hi" << endl;
+
     return 0;
 }
