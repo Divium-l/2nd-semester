@@ -1,25 +1,29 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <cmath>
 
 using namespace std;
 
 double input();
+double calcFaceArea(double length);
+double calcSurfaceArea(double length);
+double calcVolume(double length);
 
 int main()
 {
-	double a = input();
+	double length = input();
 
-	if (a <= 0)
+	if (length <= 0)
 	{
-		a = abs(a);
+		length = abs(length);
 		cout << "An attempt was made to fix a mistake" << endl;
 	}
 
 	cout << endl << endl;
-	cout << "Face area = " << pow(a, 2) << endl;
-	cout << "Surface area = " << 6*pow(a, 2) << endl;
-	cout << "Volume = " << pow(a, 3) << endl;
+	cout << "Face area = " << calcFaceArea(length);
+	cout << "\nSurface area = " << calcSurfaceArea(length);
+	cout << "\nVolume = " << calcVolume(length);
 
 }
 
@@ -27,6 +31,7 @@ double input() {
 
 	string str;
 	bool isFloat, isNegative, isValid = false;
+	int i;
 
 	while (!isValid)
 	{
@@ -35,33 +40,51 @@ double input() {
 		isFloat = false;
 		isNegative = false;
 
+		cout << "Length: ";
 		cin >> str;
 
-		if (str[0] == '-')
+		if (str[0] == '-' && str != "-" && str != "-.")
 		{
 			isNegative = true;
 			str.erase(0, 1);
 		}
 
-		for (int i = 0; i < str.length(); i++)
+		i = 0;
+		while (i < str.length() && isValid)
 		{
 
-			if ((isdigit(str[i])) || (str[i] == '.' && !isFloat))
+			if ((isdigit(str[i])) || (str[i] == '.' && !isFloat) && str != ".")
 			{
-				if ((str[i] == '.' && isFloat)) isValid = false;
-				if ((str[i] == '.' && !isFloat)) isFloat = true;
+				isFloat = (str[i] == '.');
 			}
 			else
 			{
 				isValid = false;
 			}
+			i++;
 
 		}
 
-		if (!isValid) { cout << "Incorrect value! Please try again" << endl; }
-		else break;
+		if (!isValid) 
+			cout << "Incorrect value! Please try again" << endl;
+		
 	}
 
 	if (isNegative) str.insert(0, "-");
 	return stod(str);
+}
+
+double calcFaceArea(double length)
+{
+	return pow(length, 2);
+}
+
+double calcSurfaceArea(double length)
+{
+	return 6 * calcFaceArea(length);
+}
+
+double calcVolume(double length)
+{
+	return pow(length, 3);
 }
