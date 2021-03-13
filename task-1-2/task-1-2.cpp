@@ -6,9 +6,9 @@
 using namespace std;
 
 double input();
-double calcFaceArea(double length);
-double calcSurfaceArea(double length);
-double calcVolume(double length);
+double calcFaceArea(const double length);
+double calcSurfaceArea(const double length);
+double calcVolume(const double length);
 
 int main()
 {
@@ -74,17 +74,17 @@ double input() {
 	return stod(str);
 }
 
-double calcFaceArea(double length)
+double calcFaceArea(const double length)
 {
 	return pow(length, 2);
 }
 
-double calcSurfaceArea(double length)
+double calcSurfaceArea(const double length)
 {
 	return 6 * calcFaceArea(length);
 }
 
-double calcVolume(double length)
+double calcVolume(const double length)
 {
 	return pow(length, 3);
 }
