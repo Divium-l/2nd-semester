@@ -4,18 +4,14 @@
 
 using namespace std;
 
-double input();
+double input(bool allowNegative);
+bool isValidDouble(string str, bool allowNegative);
 double calcGravityForce(const double mass);
+
 
 int main()
 {
-	double force, mass = input();
-
-	if (mass <= 0)
-	{
-		mass = abs(mass);
-		cout << "An attempt was made to fix a mistake" << endl;
-	}
+	double force, mass = input(false);
 
 	force = calcGravityForce(mass);
 
@@ -25,51 +21,57 @@ int main()
 
 }
 
-double input() {
+double input(bool allowNegative) {
 
 	string str;
-	bool isFloat, isNegative, isValid = false;
+	bool isValid = false;
 	int i;
 
 	while (!isValid)
 	{
 
 		isValid = true;
-		isFloat = false;
-		isNegative = false;
 
 		cout << "Mass: ";
 		cin >> str;
 
-		if (str[0] == '-' && str != "-" && str != "-.")
-		{
-			isNegative = true;
-			str.erase(0, 1);
-		}
-
-		i = 0;
-		while (i < str.length() && isValid)
-		{
-
-			if ((isdigit(str[i])) || (str[i] == '.' && !isFloat) && str != ".")
-			{
-				isFloat = (str[i] == '.');
-			}
-			else
-			{
-				isValid = false;
-			}
-			i++;
-
-		}
+		isValid = isValidDouble(str, allowNegative);
 
 		if (!isValid)
 			cout << "Incorrect value! Please try again" << endl;
 
 	}
 
-	if (isNegative) str.insert(0, "-");
 	return stod(str);
+}
+
+bool isValidDouble(string str, bool allowNegative)
+{
+	bool isValid, isFloat;
+	int i = 0;
+
+	isValid = true;
+	isFloat = false;
+
+	if (allowNegative && str[0] == '-' && str != "-" && str != "-.")
+		str.erase(0, 1);
+
+	while (i < str.length() && isValid)
+	{
+
+		if ((isdigit(str[i])) || (str[i] == '.' && !isFloat) && str != ".")
+		{
+			isFloat = (str[i] == '.');
+		}
+		else
+		{
+			isValid = false;
+		}
+
+		i++;
+	}
+
+	return isValid;
 }
 
 double calcGravityForce(const double mass)
