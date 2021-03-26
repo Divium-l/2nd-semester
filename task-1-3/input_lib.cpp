@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <cctype>
 
@@ -8,7 +8,14 @@ class input
 {
 	public:
 
-		static double inputDouble(const bool allowNegative = true, const string valueInputMessage = "Value: ", const string valueIncorrectMessage = "Incorrect value!Please try again\n")
+		/**
+		* \brief Метод, при помощи которого пользователь вводит число типа double
+		* \param allowNegative разрешает ввод отрицательтных чисел
+		* \param valueInputMessage сообщение, которое будет выведено перед тем, как пользователь будет вводить значение
+		* \param valueIncorrectMessage сообщение, которое будет выведено, если пользователь ввёл недопустимый символ
+		* \return число типа double
+		**/
+		static double inputDouble(const bool allowNegative = true, const string& valueInputMessage = "Value: ", const string& valueIncorrectMessage = "Incorrect value!Please try again\n")
 		{
 
 			string str;
@@ -31,8 +38,15 @@ class input
 
 			return stod(str);
 		}
-	
-		static int inputInt(const bool allowNegative = true, const string valueInputMessage = "Value: ", const string valueIncorrectMessage = "Incorrect value!Please try again\n")
+		
+		/**
+		* \brief Метод, при помощи которого пользователь вводит число типа int
+		* \param allowNegative разрешает ввод отрицательтных чисел
+		* \param valueInputMessage сообщение, которое будет выведено перед тем, как пользователь будет вводить значение
+		* \param valueIncorrectMessage сообщение, которое будет выведено, если пользователь ввёл недопустимый символ
+		* \return число типа int 
+		**/
+		static int inputInt(const bool allowNegative = true, const string& valueInputMessage = "Value: ", const string& valueIncorrectMessage = "Incorrect value!Please try again\n")
 		{
 
 			string str;
@@ -58,7 +72,13 @@ class input
 
 	private:
 
-		static bool isValidDouble(string str, const bool allowNegative)
+		/**
+		* \brief Метод, который проверяет является ли строка числом типа double
+		* \param str строка, которую ввёл пользователь
+		* \param allowNegative позволяет отрицательным числам пройти проверку
+		* \return true если строка является числом типа double
+		**/
+		static bool isValidDouble(string& str, const bool allowNegative)
 		{
 
 			bool isValid = true, isFloat = false;
@@ -85,7 +105,13 @@ class input
 			return isValid;
 		}
 
-		static bool isValidInt(string str, const bool allowNegative)
+		/**
+		* \brief Метод, который проверяет является ли строка числом типа int 
+		* \param str строка, которую ввёл пользователь
+		* \param allowNegative позволяет отрицательным числам пройти проверку
+		* \return true если строка является числом типа int
+		**/
+		static bool isValidInt(string& str, const bool allowNegative)
 		{
 
 			bool isValid = true;
