@@ -11,11 +11,7 @@ using namespace std;
 * \param r сторона отверстия R
 * \return true, если хотя бы одна сторона XYZ кирпича меньше стороны отверстия R
 **/
-bool passR(const double x, const double y, const double z, const double r)
-{
-
-	return (x < r) || (y < r) || (z < r);
-}
+bool passR(const double x, const double y, const double z, const double r);
 
 /**
 * \brief Метод, проверяющий, что хотя бы одна сторона XYZ кирпича меньше стороны отверстия S
@@ -25,11 +21,7 @@ bool passR(const double x, const double y, const double z, const double r)
 * \param s сторона отверстия S
 * \return true, если хотя бы одна сторона XYZ кирпича меньше стороны отверстия S
 **/
-bool passS(const double x, const double y, const double z, const double r, const double s)
-{
-
-	return (x < s) || (y < s) || (z < s);
-}
+bool passS(const double x, const double y, const double z, const double r, const double s);
 
 int main()
 {
@@ -50,4 +42,16 @@ int main()
 		cout << "\nThe brick cannot pass through the hole\n";
 
 	return 0;
+}
+
+bool passS(const double x, const double y, const double z, const double r, const double s)
+{
+
+	return (x < s) || (y < s) || (z < s);
+}
+
+bool passR(const double x, const double y, const double z, const double r)
+{
+
+	return (x < r) || (y < r) || (z < r);
 }
