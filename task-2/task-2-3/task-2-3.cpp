@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include "input_lib.cpp"
 
 using namespace std;
 
@@ -28,13 +27,18 @@ int main()
 	double x, y, z, r , s;
 
 	cout << "Input brick dimensions\n";
-	x = input::inputDouble(false, "x: ");
-	y = input::inputDouble(false, "y: ");
-	z = input::inputDouble(false, "z: ");
+	cout << "x: ";
+	cin >> x;
+	cout << "y: ";
+	cin >> y;
+	cout << "z: ";
+	cin >> z;
 
 	cout << "\nInput hole dimensions\n";
-	r = input::inputDouble(false, "r: ");
-	s = input::inputDouble(false, "s: ");
+	cout << "r: ";
+	cin >> r;
+	cout << "s: ";
+	cin >> s;
 
 	if (passR(x, y, z, r) && passS(x, y, z, r, s))
 		cout << "\nThe brick can pass through the hole\n";
