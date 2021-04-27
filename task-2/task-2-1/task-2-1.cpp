@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <cmath>
-#include "input_lib.cpp"
 
 using namespace std;
 
@@ -31,7 +30,13 @@ double calcArea(double const a, double const b);
 
 int main()
 {
-	double a = input::inputDouble(false, "Cathetus a: "), b = input::inputDouble(false, "Cathetus b: "), c;
+	double a, b, c;
+	cout << "a = ";
+	cin >> a;
+	cout << "b = ";
+	cin >> b;
+	cout << "c = ";
+	cin >> c;
 
 	c = calcHypotenuse(a, b);
 
