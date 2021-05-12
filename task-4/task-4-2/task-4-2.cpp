@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <random>
 #include <string>
@@ -43,6 +43,14 @@ string arrayToString(int* array, const size_t size, const string& message);
 * \param size Размер массива
 **/
 void replaceElement(int* array, const size_t size);
+
+/**
+* \brief Проверка, оканчивется ли число на необходимую цифру
+* \param number Число, необходимое проверить
+* \param digit Цифра на которую должно заканчиваться число
+ * \return True если оканчивается на нужную цифру
+**/
+bool hasRequiredLastDigit(const int number, const int digit);
 
 /**
 * \brief Поиск размера нового массива для вставки элементов
@@ -203,13 +211,18 @@ void replaceElement(int* array, const size_t size)
     array[size - 2] = max;
 }
 
+bool hasRequiredLastDigit(const int number, const int digit)
+{
+    return abs(number) % 10 == digit;
+}
+
 size_t getTempSize(int* array, size_t size, const int k)
 {
     int targets = 0;
 
     for (size_t i = 0; i < size; i++)
     {
-        if (abs(array[i]) % 10 == k)
+        if (hasRequiredLastDigit(array[i], k))
             targets++;
     }
     
@@ -223,7 +236,7 @@ void insertElements(int* array, int* tempArray, size_t size, size_t tempSize, co
 
     for (size_t i = 0; i < size; i++)
     {
-        if (abs(array[i]) % 10 == k)
+        if (hasRequiredLastDigit(array[i], k))
         {
             tempArray[i + indexOffset] = k;
             tempArray[i + 1 + indexOffset] = array[i];
