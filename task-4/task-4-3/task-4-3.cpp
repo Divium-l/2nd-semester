@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <random>
 #include <sstream>
 #include <iomanip>
@@ -14,20 +14,77 @@ enum class FillType
     manual = 2
 };
 
+/**
+ *\brief Создание двумерного массива
+ *\param row Кол-во строк
+ *\param col Кол-во столбцов
+ *\return Двумерный массив
+ */
 int** initializeArray(const size_t row, const size_t col);
 
+/**
+ *\brief Заполнение массива рандомными числами
+ *\param matrix Двумерный массив
+ *\param row Кол-во строк
+ *\param col Кол-во столбцов
+ *\param min Минимальное значение
+ *\param max Максимальное значение
+ */
 void randomizeArray(int** matrix, const size_t row, const size_t col, const int min, const int max);
 
+/**
+ *\brief Заполнение массива от руки
+ *\param matrix Двумерный массив
+ *\param row Кол-во строк
+ *\param col Кол-во столбцов
+ */
 void manualInput(int** matrix, const size_t row, const size_t col);
 
-string arrayToString(int** matrix, const size_t row, const size_t col, const int width, const string& message); //{{1,2},{3,4},{5,6}}
+/**
+ *\brief Конвертация двумерного массива в строку
+ *\param matrix Двумерный мвссив
+ *\param row Кол-во строк
+ *\param col Кол-во столбцов
+ *\param width Ширина столбцов матрицы
+ *\param message Сообщение, которое будет выведено перед массивом
+ *\return Матрица в читаемом виде
+ */
+string arrayToString(int** matrix, const size_t row, const size_t col, const int width, const string& message);
 
+/**
+ *\brief Поиск минимального элемента в столбце
+ *\param matrix Двумерный мвссив
+ *\param row Кол-во строк
+ *\param currentCol Проверяемый столбец
+ *\return Минимальное значение
+ */
 int findMin(int** matrix, const size_t row, const size_t currentCol);
 
+/**
+ *\brief Замена минимальных элементов в столбце
+ *\param matrix Двумерный массив
+ *\param row Кол-во строк
+ *\param col Кол-во столбцов
+ */
 void replaceElements(int** matrix, const size_t row, const size_t col);
 
+/**
+ *\brief Поиск нового размера двумерного массива
+ *\param matrix Двумерный массив
+ *\param row Кол-во строк
+ *\param col Кол-во столбцов
+ *\return Новое кол-во столбцов
+ */
 int getNewColSize(int** matrix, const size_t row, const size_t col);
 
+/**
+ *\brief Поиск нового размера двумерного массива
+ *\param oldMatrix Двумерный массив, в котором необходимо удалить столбцы
+ *\param row Кол-во строк
+ *\param oldCol Кол-во столбцов в старой матрице
+ *\param newCol Кол-во столбцов в новой матрице
+ *\return Новый двумерный массив
+ */
 int** getNewArray(int** oldMatrix, const size_t row, const size_t oldCol, const size_t newCol);
 
 
