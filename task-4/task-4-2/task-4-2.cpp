@@ -183,7 +183,7 @@ void manualInput(int* array, const size_t size)
     }
 }
 
-string arrayToString(int* array, const size_t size, const string& message = "")
+const string& arrayToString(int* array, const size_t size, const string& message = "")
 {
     std::stringstream buffer;
     buffer << message << "{" << array[0];
