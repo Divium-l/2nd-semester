@@ -38,6 +38,12 @@ void manualInput(int* array, const size_t size);
 string arrayToString(int* array, const size_t size, const string& message);
 
 /**
+* \brief Удаление массива
+* \param array Массив
+**/
+void destruct(int* array);
+
+/**
 * \brief Замена предпоследнего элемента массива на максимальный по модулю
 * \param array Массив
 * \param size Размер массива
@@ -122,7 +128,6 @@ int main()
         break;
     }
 
-
     //Замена предпоследнего элемента массива на максимальный по модулю
     replaceElement(array, size);
     cout << arrayToString(array, size, "Array after replacement = ") << "\n";
@@ -137,10 +142,10 @@ int main()
     int* tempArray = new int[tempSize];
     insertElements(array, tempArray, size, tempSize, k);
 
+    destruct(array);
+
     size = tempSize;
     array = tempArray;
-
-    
 
     cout << arrayToString(array, size, "Array after inserting = ") << "\n";
 
@@ -151,9 +156,8 @@ int main()
     cout << "\n" << arrayToString(array, size, "New array = ") << "\n";
 
 
-    delete[] array;
-    delete[] newArray;
-    //delete[] tempArray; ломается
+    destruct(array);
+    destruct(newArray);
 
     return 0;
 }
@@ -183,7 +187,7 @@ void manualInput(int* array, const size_t size)
     }
 }
 
-const string& arrayToString(int* array, const size_t size, const string& message = "")
+string arrayToString(int* array, const size_t size, const string& message = "")
 {
     std::stringstream buffer;
     buffer << message << "{" << array[0];
@@ -196,6 +200,15 @@ const string& arrayToString(int* array, const size_t size, const string& message
     buffer << "}";
 
     return buffer.str();
+}
+
+void destruct(int* array)
+{
+    if (array != nullptr)
+    {
+        delete[] array;
+        array = nullptr;
+    }
 }
 
 void replaceElement(int* array, const size_t size)
