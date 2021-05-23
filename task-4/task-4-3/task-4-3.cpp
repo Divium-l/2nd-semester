@@ -52,6 +52,13 @@ void manualInput(int** matrix, const size_t row, const size_t col);
 string arrayToString(int** matrix, const size_t row, const size_t col, const int width, const string& message);
 
 /**
+ *\brief Удаление двумерного массива
+ *\param array Двумерный массивы
+ *\param row Кол-во строк
+ */
+void destruct(int** array, size_t row);
+
+/**
  *\brief Поиск минимального элемента в столбце
  *\param matrix Двумерный мвссив
  *\param row Кол-во строк
@@ -120,9 +127,6 @@ int main()
             break;
     }
 
-    
-    
-
     cout << arrayToString(matrix, row, col, WIDTH, "matrix: \n") << "\n\n";
 
     //замена
@@ -135,6 +139,7 @@ int main()
     col = newCol;
     cout << arrayToString(matrix, row, col, WIDTH, "matrix with deleted columns: \n") << "\n\n";
 
+    destruct(matrix, row);
 }
 
 int** initializeArray(const size_t row, const size_t col)
@@ -197,6 +202,18 @@ string arrayToString(int** matrix, const size_t row, const size_t col, const int
     return buffer.str();
 }
 
+void destruct(int** array, size_t row)
+{
+    if (array == nullptr)
+        return;
+
+    for (size_t i = 0; i < row; i++)
+        delete[] array[i];
+
+    delete[] array;
+    array = nullptr;
+}
+
 int findMin(int** matrix, const size_t row, const size_t currentCol)
 {
     int min = abs(matrix[0][currentCol]);
@@ -249,6 +266,8 @@ int** getNewArray(int** oldMatrix, const size_t row, const size_t oldCol, const 
             for (size_t i = 0; i < row; i++)
                 newMatrix[i][j - colOffset] = oldMatrix[i][j];
     }
+
+    destruct(oldMatrix, row);
 
     return newMatrix;
 }
